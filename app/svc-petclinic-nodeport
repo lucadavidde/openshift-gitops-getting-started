@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: spring-petclinic
+    app.kubernetes.io/component: web
+    app.kubernetes.io/instance: spring-petclinic
+    app.kubernetes.io/name: spring-petclinic
+    app.kubernetes.io/part-of: spring-petclinic
+    app.openshift.io/runtime: java
+  name: petclinic-nodeport
+spec:
+  ports:
+  - name: port-1
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+  - name: port-2
+    port: 8443
+    protocol: TCP
+    targetPort: 8443
+  - name: port-3
+    port: 8778
+    protocol: TCP
+    targetPort: 8778
+  selector:
+    app: spring-petclinic
+  type: NodePort
+status:
+  loadBalancer: {}
